@@ -1,0 +1,9 @@
+{
+  "name": "uniturk-crm",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Uniturk CRM, efor takip ve ortak case management",
+  "engines": { "node": ">=22 <25" },
+  "scripts": { "start": "node server.js", "test": "node --test" },
+  "dependencies": { "pg": "^8.13.1" }
+}

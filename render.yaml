@@ -1,0 +1,30 @@
+# Render > New > Blueprint üzerinden oluşturun.
+# ÖNEMLİ: Ücretsiz PostgreSQL 30 gün sonra sona erer. Canlı iş verisi için
+# Render panelinden veritabanını ücretli plana yükseltin veya kalıcı Postgres bağlayın.
+services:
+  - type: web
+    name: uniturk-crm
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: npm install --omit=dev
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: uniturk-crm-db
+          property: connectionString
+      - key: TECH_USERNAME
+        value: teknik
+      - key: DETAIL_USERNAME
+        value: detay
+
+databases:
+  - name: uniturk-crm-db
+    plan: free
+    region: frankfurt
+    databaseName: uniturk_crm
+    user: uniturk
